@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Карта Калининграда</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <div id="map"></div>
+  <div id="controls">
+    <input type="text" id="addressInput" placeholder="Введите адрес в Калининграде" />
+    <button id="button" onclick="locateAddress()">Найти</button>
+    <div id="scoreBox">Посещено: <span id="score">0</span></div>
+  </div>
+  <div id="cards"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+  <div class="rating-floating" id="ratingWidget">
+    <div class="rating-header">
+      <h3 class="rating-title">Топ-3 исследователя</h3>
+      <span class="rating-close" id="closeRating">&times;</span>
+    </div>
+    <div class="rating-item">
+      <div class="rating-place">1</div>
+      <div class="rating-name">Александр Новиков</div>
+      <div class="rating-score">28</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-place">2</div>
+      <div class="rating-name">Елена Смирнова</div>
+      <div class="rating-score">24</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-place">3</div>
+      <div class="rating-name">Дмитрий Ковалёв</div>
+      <div class="rating-score">19</div>
+    </div>
+  </div>
+</body>
+</html>

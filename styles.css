@@ -1,0 +1,284 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f0f0f0;
+  }
+  
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+  /* Добавьте это в ваш файл styles.css */
+
+#controls {
+    display: flex;
+    gap: 8px; /* Уменьшаем расстояние между полем и кнопкой */
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+  }
+  
+  #addressInput {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+  }
+  
+  #addressInput::placeholder {
+    color: #888;
+    font-style: italic;
+    font-size: 13px;
+  }
+  
+  #controls button {
+    padding: 8px 16px;
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  #controls button:hover {
+    background-color: #45a049; /* Темнее при наведении */
+  }
+  
+  #controls button:active {
+    background-color: #3d8b40; /* Еще темнее при нажатии */
+  }
+  /* Стили для блока посещений */
+#scoreBox {
+    padding: 10px 15px;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    font-weight: bold;
+    margin-left: auto; /* Размещаем справа */
+  }
+  
+/* Стили для плавающего рейтинга */
+.rating-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 220px;
+    padding: 10px;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    background-color: #fffaf0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .rating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .rating-title {
+    font-size: 14px;
+    color: #e65100;
+    margin: 0;
+  }
+  
+  .rating-close {
+    cursor: pointer;
+    color: #999;
+    font-size: 16px;
+    line-height: 1;
+  }
+  
+  .rating-close:hover {
+    color: #f44336;
+  }
+  
+  .rating-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    padding: 5px;
+    background-color: #fff8e1;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  
+  .rating-place {
+    font-weight: bold;
+    width: 20px;
+    color: #ff9800;
+    text-align: center;
+  }
+  
+  .rating-name {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .rating-score {
+    font-weight: bold;
+    color: #4CAF50;
+    margin-left: 5px;
+  }
+  
+  /* Стили для контейнера карточек */
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    align-items: stretch; /* Важно для одинаковой высоты */
+  }
+  
+  /* Стили для карточек */
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 220px; /* Фиксированная ширина */
+    min-height: 350px; /* Минимальная высота */
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden; /* Скрываем выходящее за границы */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Контент карточки с автоматическим растягиванием */
+  .card-content {
+    flex: 1; /* Занимает всё доступное пространство */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .card h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .card p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /* Футер карточки с фиксированным положением */
+  .card-footer {
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+  }
+  
+  .card-footer label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .card-footer input[type="checkbox"] {
+    margin: 0;
+    accent-color: #4CAF50; /* Зелёный цвет чекбокса */
+  }
+  /* Стили для ближайших карточек */
+.card.nearby {
+    order: -1; /* Перемещаем в начало */
+    margin-bottom: 20px;
+    border: 2px solid #4CAF50;
+    position: relative;
+  }
+  
+  /* Бейдж с расстоянием */
+  .distance-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Анимация для поднятия карточек */
+  .card.nearby {
+    animation: liftUp 0.5s ease forwards;
+  }
+  
+  @keyframes liftUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  .card.visited {
+    background-color: #f0fff0;
+    border-color: #81C784;
+  }
+
+  /* Стили для маркеров */
+.nearby-marker {
+    color: gold;
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .regular-marker {
+    color: #4285F4;
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    font-size: 20px;
+    text-align: center;
+    opacity: 0.7;
+  }
+  /* Стили для метки адреса */
+.address-marker {
+    text-align: center;
+    font-size: 20px;
+  }
+  
+  .address-label {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+  }
+  
+  /* Анимация появления метки */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .address-marker {
+    animation: bounce 0.5s ease;
+  }
